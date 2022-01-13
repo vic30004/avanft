@@ -1,19 +1,62 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Greeter", function () {
-  it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
+describe("AvanftMarket", function () {
+  it("Should mint and trade NFTs", async function () {
+    // test to receive contract address
+    const Market = await ethers.getContractFactory("AvanftMarket");
+    const market = await Market.deploy();
+    await market.deployed();
+    const marketAddress = market.address;
 
-    expect(await greeter.greet()).to.equal("Hello, world!");
+    const NFT = await ethers.getContractFactory("NFT");
+    const nft = await NFT.deploy(marketAddress);
+    await nft.deployed();
+    const nftContractAddress = nft.address;
 
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
+    let listingPrice = await market.getListingPrice();
+    listingPrice = listingPrice.toString();
 
-    // wait until the transaction is mined
-    await setGreetingTx.wait();
+    const auctionPrice = ethers.utils.parseUnits("100", "ether");
 
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+    // test for minting
+    await nft.mintToken("https-t1");
+    await nft.mintToken("https-t2");
+
+    await market.makeMarketItem(nftContractAddress, 1, auctionPrice, {
+      value: listingPrice,
+    });
+    await market.makeMarketItem(nftContractAddress, 2, auctionPrice, {
+      value: listingPrice,
+    });
+
+    // test for different addresses from different users - test accounts
+    // return an array of addresses
+    const [_, buyerAddress] = await ethers.getSigners();
+
+    // create a market sale with address, id and price
+    await market.connect(buyerAddress).createMarketSale(nftContractAddress, 1, {
+      value: auctionPrice,
+    });
+
+    let items = await market.fetchMarketTokens();
+
+    items = await Promise.all(
+      items.map(async (i) => {
+        // get the uri of the value
+        const tokenUri = await nft.tokenURI(i.tokenId);
+        let item = {
+          price: i.price.toString(),
+          tokenId: i.tokenId.toString(),
+          seller: i.seller,
+          owner: i.owner,
+          tokenUri,
+        };
+        return item;
+      })
+    );
+
+    // test out all the items
+    console.log("items", items);
   });
 });
