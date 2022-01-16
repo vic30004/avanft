@@ -1,24 +1,21 @@
+import {useState} from 'react';
+import HamburgerMenu from "./HamburgerMenu";
+import NavList from "./NavList";
+
 export default function Nav() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <section className=''>
-      <nav className='bg-blue-light pl-123 h-16'>
+      <nav className='bg-blue-light md:pl-123 h-16 pl-10'>
         <div className='flex justify-between items-center h-full'>
           <div>
             <a className='title-font text-xl' href=''>
               AVANFT
             </a>
           </div>
-          <div className='flex items-center h-full'>
-            <div className='mr-10 text-xl'>
-              <a href=''>Mint NFT</a>
-            </div>
-            <div className='mr-10 text-xl'>
-              <a href=''>My NFTs</a>
-            </div>
-            <div className='mr-10 text-xl border-2 rounded-md border-purple-dark'>
-              <button className='py-1 px-3 '>Connect Account</button>
-            </div>
-          </div>
+          <HamburgerMenu setIsOpen={setIsOpen}/>
+          
+          <NavList />
         </div>
       </nav>
     </section>
