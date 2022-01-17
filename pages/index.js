@@ -1,9 +1,10 @@
-import { Base, HeroHead } from "./components";
+import { Base, HeroHead, HowItWorks } from "./components";
 
 function Home() {
   return (
     <>
       <HeroHead />
+      <HowItWorks />
     </>
   );
 }
