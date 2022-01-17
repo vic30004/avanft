@@ -1,9 +1,10 @@
 import { Nav } from "../..";
 
-export default function Base({ childern }) {
+export default function Base({ children }) {
   return (
-    <Nav>
-      <div className='fit'>{childern}</div>
-    </Nav>
+    <div className='max-w '>
+      <Nav />
+      <div className='fit'>{children}</div>
+    </div>
   );
 }

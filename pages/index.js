@@ -1,9 +1,17 @@
-import { Base } from "./components";
+import { Base, HeroHead } from "./components";
 
-export default function Home() {
+function Home() {
   return (
-    <Base>
-      <div>Hello</div>
-    </Base>
+    <>
+      <HeroHead />
+    </>
   );
 }
+
+const Wrapper = ({ ...props }) => (
+  <Base>
+    <Home {...props} />
+  </Base>
+);
+
+export default Wrapper;
