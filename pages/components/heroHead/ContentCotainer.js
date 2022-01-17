@@ -5,7 +5,7 @@ import Image from "next/image";
 const ContentCotainer = () => {
   return (
     <>
-      <div className='corner-shape bg-blue w-8/12 h-80 z-10 pt-10 md:pl-123 absolute left-0 top-0'>
+      <div className='corner-shape bg-blue w-8/12 h-80 z-10 pt-10 md:pl-123  left-0 top-0'>
         <h1 className='title-font text-6xl pb-7'>AVANFT</h1>
         <div>
           <p className='text-3xl mb-5'>
@@ -22,7 +22,7 @@ const ContentCotainer = () => {
         <Image
           className='-z-50'
           src={
-            "https://res.cloudinary.com/dawyijhjw/image/upload/c_fill,dpr_auto,fl_progressive,h_324,w_772/v1642378720/AVANFT/remy-gieling-Zf0mPf4lG-U-unsplash_bhxqu0.webp"
+            "https://res.cloudinary.com/dawyijhjw/image/upload/c_fit,dpr_auto,fl_progressive,w_auto/v1642378720/AVANFT/remy-gieling-Zf0mPf4lG-U-unsplash_bhxqu0.webp"
           }
           alt='vr-headset'
           layout='fill'

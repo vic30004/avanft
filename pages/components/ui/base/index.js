@@ -1,10 +1,11 @@
 import { Nav } from "../..";
 
 export default function Base({ children }) {
+  console.log(children);
   return (
-    <div className='max-w '>
+    <>
       <Nav />
-      <div className='fit'>{children}</div>
-    </div>
+     {children}
+    </>
   );
 }
