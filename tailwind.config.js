@@ -15,6 +15,7 @@ module.exports = {
       "blue-dark": "#273444",
       "purple-dark": "#7B97E9",
       "orange-dark": "#E17F7C",
+      grey: "#E2E2E2",
     },
     fontFamily: {
       sans: ["Montserrat ", "sans-serif"],
@@ -27,7 +28,9 @@ module.exports = {
         60: "3.75rem",
         64: "4rem",
         123: "7.68rem",
+        207: "12.93rem",
         244: "15.25rem",
+        267: "16.68rem",
       },
     },
   },

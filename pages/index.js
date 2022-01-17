@@ -1,10 +1,14 @@
-import { Base, HeroHead, HowItWorks } from "./components";
+import Base from "@components/ui/base";
+import HeroHead from "@components/heroHead";
+import HowItWorks from "@components/howItWorks";
+import MintedAvatars from "@components/mintedAvatars";
 
 function Home() {
   return (
     <>
       <HeroHead />
       <HowItWorks />
+      <MintedAvatars />
     </>
   );
 }
