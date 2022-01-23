@@ -5,6 +5,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+html {
+  background: #d2e7fe;
+}
+
 p {
   font-family: "Montserrat", sans-serif;
 }

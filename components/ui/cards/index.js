@@ -7,6 +7,7 @@ export default function Cards({
   price,
   description,
   handleClick,
+  token,
 }) {
   return (
     <artricle className='w-267 py-2 my-10 border flex flex-col justify-center px-2 bg-grey shadow-lg rounded-md'>
@@ -20,7 +21,12 @@ export default function Cards({
         </div>
         <p className='w-56'>{description}</p>
         <div className='flex justify-between'>
-          <Button text={"BUY"} />
+          <button
+            className=' bg-purple-dark title-font px-7 py-3 rounded-lg text-sm my-4'
+            onClick={() => handleClick(token)}
+          >
+            BUY
+          </button>
           <Button text={"VIEW"} />
         </div>
       </div>
