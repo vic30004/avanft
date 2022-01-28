@@ -5,7 +5,7 @@ import Image from "next/image";
 const ContentCotainer = () => {
   return (
     <>
-      <div className='corner-shape bg-blue w-8/12 h-80 z-10 pt-10 md:pl-123  left-0 top-0'>
+      <div className='corner-shape bg-blue w-6/12 h-80 z-10 pt-10 md:pl-123  left-0 top-0'>
         <h1 className='title-font text-6xl pb-7'>AVANFT</h1>
         <div>
           <p className='text-3xl mb-5'>
@@ -18,9 +18,9 @@ const ContentCotainer = () => {
         </div>
         <Button text={"GET STARTED"} />
       </div>
-      <div className='w-7/12 h-80 -z-50 absolute top-0 right-0 picture-shape'>
+      <div className='w-6/12 h-80 -z-50 absolute top-0 right-0 picture-shape'>
         <Image
-          className='-z-50'
+          className='-z-50 object-cover'
           src={
             "https://res.cloudinary.com/dawyijhjw/image/upload/c_fit,dpr_auto,fl_progressive,w_auto/v1642378720/AVANFT/remy-gieling-Zf0mPf4lG-U-unsplash_bhxqu0.webp"
           }
