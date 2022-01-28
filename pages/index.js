@@ -9,6 +9,7 @@ import Web3Modal from "web3modal";
 import { nftaddress, nftmarketaddress } from "../config";
 import NFT from "../artifacts/contracts/NFT.sol/NFT.json";
 import AvanftMarket from "../artifacts/contracts/AvanftMarket.sol/AvanftMarket.json";
+import { getSigner } from "@components/web3";
 
 function Home() {
   const [nfts, setNfts] = useState([]);
@@ -53,27 +54,25 @@ function Home() {
   }
 
   async function buyNft(nft) {
-    /* needs the user to sign the transaction, so will use Web3Provider and sign it */
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(nftmarketaddress, AvanftMarket.abi, signer);
+    // /* needs the user to sign the transaction, so will use Web3Provider and sign it */
+    // const signer = await getSigner()
 
-    /* user will be prompted to pay the asking proces to complete the transaction */
-    const price = ethers.utils.parseUnits(nft.price.toString(), "ether");
-    const transaction = await contract.createMarketSale(
-      nftaddress,
-      nft.tokenId,
-      {
-        value: price,
-      }
-    );
-    await transaction.wait();
-    loadNFTs();
+    // const contract = new ethers.Contract(nftmarketaddress, AvanftMarket.abi, signer);
+
+    // /* user will be prompted to pay the asking proces to complete the transaction */
+    // const price = ethers.utils.parseUnits(nft.price.toString(), "ether");
+    // const transaction = await contract.createMarketSale(
+    //   nftaddress,
+    //   nft.tokenId,
+    //   {
+    //     value: price,
+    //   }
+    // );
+    // await transaction.wait();
+    // loadNFTs();
+    return [];
   }
 
-  console.log(nfts);
   return (
     <>
       <HeroHead />

@@ -2,10 +2,10 @@ import Button from "@components/ui/button";
 import Base from "@components/ui/base";
 import { useState } from "react";
 import { create as ipfsHttpClient } from "ipfs-http-client";
-import { createSale } from "@components/web3";
+import { getSigner } from "@components/web3";
 import { useRouter } from "next/router";
 import { ethers } from "ethers";
-import Web3Modal from "web3modal";
+
 import { nftaddress, nftmarketaddress } from "config";
 import NFT from "../artifacts/contracts/NFT.sol/NFT.json";
 import AvanftMarket from "../artifacts/contracts/AvanftMarket.sol/AvanftMarket.json";
@@ -37,11 +37,8 @@ function MintNft() {
     }
   }
   const createSale = async (url) => {
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
-
+    const signer = await getSigner();
+    console.log(signer);
     let contract = new ethers.Contract(nftaddress, NFT.abi, signer);
     let transaction = await contract.mintToken(url);
     let tx = await transaction.wait();

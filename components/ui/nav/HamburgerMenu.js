@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,9 @@ const HamburgerMenu = () => {
           isOpen ? "flex" : "hidden"
         } flex-col space-y-6 mt-14 p-6 top-0 right-2 bg-blue shadow-md rounded`}
       >
-        <li className=''>Mint NFT</li>
+        <li className=''>
+          <Link href='mint-nft'>Mint NFT</Link>
+        </li>
         <li>My NFT's</li>
         <li>Connect Account</li>
       </ul>
