@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import Web3 from "web3";
-import Web3Modal from "web3Modal";
 import Link from "next/link";
 
 const NavList = ({ connect, isLoading }) => {
@@ -24,7 +22,7 @@ const NavList = ({ connect, isLoading }) => {
           <Link href='mint-nft'>Mint NFT</Link>
         </div>
         <div className='md:mr-10 md:text-xl'>
-          <a href=''>My NFTs</a>
+          <Link href='my-nfts'>My NFTs</Link>
         </div>
         <div className='md:mr-10 md:text-xl border-2 rounded-md border-purple-dark'>
           {account ? (
