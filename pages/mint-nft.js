@@ -1,19 +1,19 @@
-import Button from "@components/ui/button";
 import Base from "@components/ui/base";
 import { useState } from "react";
 import { create as ipfsHttpClient } from "ipfs-http-client";
-import { getSigner } from "@components/web3";
 import { useRouter } from "next/router";
 import { ethers } from "ethers";
 
 import { nftaddress, nftmarketaddress } from "config";
 import NFT from "../artifacts/contracts/NFT.sol/NFT.json";
 import AvanftMarket from "../artifacts/contracts/AvanftMarket.sol/AvanftMarket.json";
+import { useWeb3 } from "@components/web3";
+
 const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 
 function MintNft() {
   const router = useRouter();
-
+  const { signer } = useWeb3();
   const [fileUrl, setFileUrl] = useState(null);
   const [assetsUrl, setAssetsUrl] = useState(null);
   const [formInput, updateFormInput] = useState({
@@ -21,7 +21,6 @@ function MintNft() {
     name: "",
     description: "",
   });
-
   async function onChange(e, type) {
     const file = e.target.files[0];
 
@@ -37,8 +36,6 @@ function MintNft() {
     }
   }
   const createSale = async (url) => {
-    const signer = await getSigner();
-    console.log(signer);
     let contract = new ethers.Contract(nftaddress, NFT.abi, signer);
     let transaction = await contract.mintToken(url);
     let tx = await transaction.wait();

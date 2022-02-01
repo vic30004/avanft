@@ -16,14 +16,18 @@ export default function Web3Provider({ children }) {
     const web3Modal = new Web3Modal();
     const wallet = web3Modal.providerController.injectedProvider;
     if (wallet) {
-      const provider = await web3Modal.connect();
-      if (provider) {
+      const connection = await web3Modal.connect();
+      if (connection) {
         const web3 = new Web3(provider);
+        const provider = new ethers.providers.Web3Provider(connection);
+        const signer = provider.getSigner();
+
         setWeb3Api({
           web3,
           provider,
+          connection,
           isLoading: false,
-          signer: null,
+          signer,
         });
       } else {
         setWeb3Api((api) => ({ ...api, isLoading: false }));
