@@ -46,6 +46,7 @@ function Home() {
           seller: i.seller,
           owner: i.owner,
           image: meta.data.image,
+          sold: i.sold,
           name: meta.data.name,
           description: meta.data.description,
         };
