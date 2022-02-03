@@ -8,9 +8,12 @@ export default function Cards({
   description,
   handleClick,
   token,
+  assets,
+  sold,
+  owner,
 }) {
   return (
-    <artricle className='w-267 py-2 my-10 border flex flex-col justify-center px-2 bg-grey shadow-lg rounded-md'>
+    <artricle className='w-267 py-2 my-10 border flex flex-col justify-center px-2  bg-grey shadow-lg rounded-md'>
       <div className=''>
         <Image src={picture} width={248} height={134} alt={title} />
       </div>
@@ -21,13 +24,21 @@ export default function Cards({
         </div>
         <p className='w-56'>{description}</p>
         <div className='flex justify-between'>
-          <button
-            className=' bg-purple-dark title-font px-7 py-3 rounded-lg text-sm my-4'
-            onClick={() => handleClick(token)}
-          >
-            BUY
-          </button>
-          <Button text={"VIEW"} />
+          {handleClick && (
+            <button
+              className=' bg-purple-dark title-font px-7 py-3 rounded-lg text-sm my-4'
+              onClick={() => handleClick(token)}
+            >
+              BUY
+            </button>
+          )}
+          {sold && assets && owner === localStorage.account && (
+            <button className=' bg-purple-dark title-font px-7 py-3 rounded-lg text-sm my-4'>
+              <a href={assets} download={`${title}-assets`}>
+                DOWNLOAD
+              </a>
+            </button>
+          )}
         </div>
       </div>
     </artricle>

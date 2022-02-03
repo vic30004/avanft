@@ -35,6 +35,7 @@ function MintNft() {
       alert("Error uploading file: ", error);
     }
   }
+
   const createSale = async (url) => {
     let contract = new ethers.Contract(nftaddress, NFT.abi, signer);
     let transaction = await contract.mintToken(url);
